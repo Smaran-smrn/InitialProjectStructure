@@ -1,13 +1,29 @@
 <script setup>
-import api from "./services/api";
-import { onMounted } from "vue";
-
-onMounted(async () => {
-  const res = await api.get("/");
-  console.log(res.data);
-});
+import Header from './components/layout/Header.vue'
+import Footer from './components/layout/Footer.vue'
 </script>
 
 <template>
-  <h1>Vue Frontend Running...</h1>
+  <div class="layout">
+    <Header />
+
+    <main class="main-content">
+      <router-view />
+    </main>
+
+    <Footer />
+  </div>
 </template>
+
+<style>
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1; /* pushes footer to bottom */
+  padding: 20px;
+}
+</style>
